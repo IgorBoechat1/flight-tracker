@@ -1,7 +1,7 @@
 // Helper function to generate random coordinates within Europe
 const getRandomCoordinatesInEurope = () => {
     const latitude = 35 + Math.random() * (70 - 35); // Europe latitude range: 35 to 70
-    const longitude = -10 + Math.random() * (40 - (-10)); // Europe longitude range: -10 to 40
+    const longitude = -10 + Math.random() * (40 - -10); // Europe longitude range: -10 to 40
     return { latitude, longitude };
   };
   
