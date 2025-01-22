@@ -13,15 +13,15 @@ const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { 
 
 // Custom airplane icon with random rotation
 const createAirplaneIcon = () => {
-  const randomRotation = Math.floor(Math.random() * 60); // Random angle for rotation
-  return new L.DivIcon({
-    className: 'airplane-icon',
-    html: `<img src="/plane2.png" style="transform: rotate(${randomRotation}deg); width: 30px; height: 30px; drop-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);" />`,
-    iconAnchor: [15, 15],
-    popupAnchor: [0, -15],
-
-  });
-};
+    if (typeof window === 'undefined') return undefined; // Return undefined instead of null
+    const randomRotation = Math.floor(Math.random() * 60); // Random angle for rotation
+    return new L.DivIcon({
+      className: 'airplane-icon',
+      html: `<img src="/plane2.png" style="transform: rotate(${randomRotation}deg); width: 30px; height: 30px; drop-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);" />`,
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -15],
+    });
+  };
 
 const Map = () => {
   const [flights, setFlights] = useState<Flight[]>([]); // Store active flights
