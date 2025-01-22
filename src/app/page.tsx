@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import generateRandomFlightData from '@/components/FakeFlightData'; // Adjust the import path as necessary
 
@@ -23,7 +23,9 @@ const MyApp: React.FC = () => {
   const [selectedPlane, setSelectedPlane] = useState<Flight | null>(null);
   const [isClient, setIsClient] = useState<boolean>(false);
 
-  const planeRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  // Use a dictionary of refs (React.RefObject<HTMLDivElement | null>)
+  const planeRefs = useRef<{ [key: string]: React.RefObject<HTMLDivElement | null> }>({});
+
   const flightsContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -55,9 +57,9 @@ const MyApp: React.FC = () => {
   }, [useFakeData]); // Run whenever `useFakeData` changes
 
   useEffect(() => {
-    if (selectedPlane && planeRefs.current[selectedPlane.icao24]) {
+    if (selectedPlane && planeRefs.current[selectedPlane.icao24]?.current) {
       // Scroll the respective plane into view when it's selected
-      planeRefs.current[selectedPlane.icao24]?.scrollIntoView({
+      planeRefs.current[selectedPlane.icao24]?.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'nearest',
@@ -93,7 +95,7 @@ const MyApp: React.FC = () => {
               {flights.map((flight) => (
                 <div
                   key={flight.icao24}
-                  ref={(el) => (planeRefs.current[flight.icao24] = el)} // Assign ref to each plane
+                  ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()} // Create and assign ref to each plane
                   className={`bg-gray-700 p-6 rounded-lg shadow-md cursor-pointer w-72 ${
                     selectedPlane?.icao24 === flight.icao24 ? 'border border-teal-500' : ''
                   }`}
@@ -143,7 +145,7 @@ const MyApp: React.FC = () => {
             {flights.map((flight) => (
               <div
                 key={flight.icao24}
-                ref={(el) => (planeRefs.current[flight.icao24] = el)} // Assign ref to each plane
+                ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()} // Create and assign ref to each plane
                 className={`bg-gray-700 p-6 rounded-lg shadow-md cursor-pointer w-full ${
                   selectedPlane?.icao24 === flight.icao24 ? 'border border-teal-500' : ''
                 }`}

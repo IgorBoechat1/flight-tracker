@@ -1,6 +1,8 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Flight } from '@/app/page'; // Adjust the import path as necessary
 import L from 'leaflet';
 
 interface Plane {
@@ -13,13 +15,14 @@ interface Plane {
   imageUrl: string;
 }
 
-interface MapProps {
-  flights: Plane[];
-  selectedPlane: Plane | null;
-  setSelectedPlane: (plane: Plane | null) => void;
-  setFlights: (flights: Plane[]) => void;
-  useFakeData: boolean;
-}
+export interface MapProps {
+    flights: Flight[];
+    selectedPlane: Flight | null;
+    setSelectedPlane: React.Dispatch<React.SetStateAction<Flight | null>>;
+    setFlights: React.Dispatch<React.SetStateAction<Flight[]>>;
+    useFakeData: boolean;
+    setUseFakeData: React.Dispatch<React.SetStateAction<boolean>>;  // Add this line
+  }
 
 const Map: React.FC<MapProps> = ({ flights, selectedPlane, setSelectedPlane, setFlights, useFakeData }) => {
   const mapRef = useRef<any>(null);
