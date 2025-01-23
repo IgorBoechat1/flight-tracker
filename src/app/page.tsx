@@ -75,49 +75,49 @@ const MyApp: React.FC = () => {
     <div className="flex flex-col h-screen">
       {/* Header */}
       <header className="bg-[#9B1B30] text-white text-2xl font-bold p-4 text-center">
-        <h1>Igor's Flight Tracker</h1>
+        <h1>Flight Tracker</h1>
       </header>
 
       {/* Main content */}
-      <main className="flex-grow flex flex-col lg:flex-row">
+      <main className="flex-grow flex flex-col lg:flex-row text-4">
         {/* Map Section */}
-        <section className="relative w-full lg:flex-grow h-[50vh] lg:h-full">
-          <aside className="lg:hidden w-full absolute mt-0 overflow-x-scroll bg-gray-800 text-white p-2 z-50 h-full">
+        <section className="relative w-full lg:flex-grow h-[30vh] lg:h-full">
+          <aside className="lg:hidden h-64 w-full absolute mt-0 overflow-x-auto bg-gray-800 text-white p-2 z-50">
             <button
               onClick={() => setUseFakeData((prev) => !prev)}
-              className="mb-4 w-full items-center px-4 py-2 bg-gray-600 text-white rounded-md shadow-md hover:bg-red-700"
+              className="mb-4 w-full items-center px-4 py-2  bg-gray-600 text-white rounded-md shadow-md hover:bg-red-700"
             >
               {useFakeData ? 'Switch to API Data' : 'Use Fake Data'}
             </button>
             <h2 className="text-xl text-center font-bold mb-6">PLANES INFO</h2>
             {/* Create a scrollable container for the flight list */}
-            <div className="flex space-x-6 overflow-x-auto">
+            <div className="flex space-x-3 bg-gray-400 h-16  w-[38px] text-8">
               {flights.map((flight) => (
                 <div
                   key={flight.icao24}
-                  ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()} // Create and assign ref to each plane
-                  className={`bg-gray-700 p-6 rounded-lg shadow-md cursor-pointer w-72 ${
+                  ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()}
+                  className={`bg-gray-700 p-2 h-24 rounded-lg shadow-md cursor-pointer w-[72px] ${
                     selectedPlane?.icao24 === flight.icao24 ? 'border border-teal-500' : ''
                   }`}
-                  onClick={() => setSelectedPlane(flight)} // Set the selected plane from sidebar
+                  onClick={() => setSelectedPlane(flight)}
                 >
                   <img
                     src={flight.imageUrl}
                     alt={flight.planeName}
-                    className="w-full h-40 object-cover rounded-md mb-4"
+                    className="w-full h-full object-cover rounded-md mb-4"
                   />
-                  <h3 className="text-lg font-semibold">{flight.planeName}</h3>
-                  <p>Callsign: {flight.callsign}</p>
-                  <p>Origin Country: {flight.origin_country}</p>
+                  <h3 className="text-[8px]">{flight.planeName}</h3>
+                  <p className='text-[6px]'>Callsign: {flight.callsign}</p>
+                  <p className='text-[6px]'>Origin Country: {flight.origin_country}</p>
                 </div>
               ))}
             </div>
           </aside>
-          <div className="relative mt-72 right-0 h-1 bg-red-500">
+          <div className="relative mt-56 right-0 h-1 bg-red-500">
             <Map
               flights={flights}
               selectedPlane={selectedPlane}
-              setSelectedPlane={setSelectedPlane} // Pass function to Map
+              setSelectedPlane={setSelectedPlane}
               setFlights={setFlights}
               useFakeData={useFakeData}
               setUseFakeData={setUseFakeData}
@@ -128,7 +128,7 @@ const MyApp: React.FC = () => {
         {/* Sidebar (Desktop) */}
         <aside
           ref={flightsContainerRef}
-          className="hidden lg:block w-96 h-screen overflow-y-scroll bg-gray-800 text-white p-6"
+          className="hidden lg:block w-96 h-screen overflow-y-auto bg-gray-800 text-white p-6"
         >
           <button
             onClick={() => setUseFakeData((prev) => !prev)}
@@ -136,29 +136,27 @@ const MyApp: React.FC = () => {
           >
             {useFakeData ? 'Switch to API Data' : 'Use Fake Data'}
           </button>
-          <h2 className="text-xl text-center font-bold mb-6">PLANES INFO</h2>
-          {/* Create a scrollable container for the flight list */}
-          <div
-            ref={flightsContainerRef}
-            className="space-y-8 overflow-y-scroll max-h-[calc(100vh-120px)]" // Adjust height to fit inside sidebar
-          >
+          <h2 className="text-xl text-center font-bold mb-2">PLANES INFO</h2>
+          {/* Ensure the container does not scroll */}
+          <div className="flex flex-col space-y-4 h-[calc(100vh-6rem)] overflow-y-auto">
+            {/* Adjusted height of the flight list container */}
             {flights.map((flight) => (
               <div
                 key={flight.icao24}
-                ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()} // Create and assign ref to each plane
-                className={`bg-gray-700 p-6 rounded-lg shadow-md cursor-pointer w-full ${
+                ref={planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>()}
+                className={`bg-gray-700 p-2 rounded-lg shadow-md cursor-pointer w-full ${
                   selectedPlane?.icao24 === flight.icao24 ? 'border border-teal-500' : ''
                 }`}
-                onClick={() => setSelectedPlane(flight)} // Set the selected plane from sidebar
+                onClick={() => setSelectedPlane(flight)}
               >
                 <img
                   src={flight.imageUrl}
                   alt={flight.planeName}
-                  className="w-full h-40 object-cover rounded-md mb-4"
+                  className="w-full h-30 object-cover rounded-md mb-0"
                 />
-                <h3 className="text-lg font-semibold">{flight.planeName}</h3>
-                <p>Callsign: {flight.callsign}</p>
-                <p>Origin Country: {flight.origin_country}</p>
+                <h3 className="font-8 font-semibold">{flight.planeName}</h3>
+                <p className='text-4'>Callsign: {flight.callsign}</p>
+                <p className='text-4'>Origin Country: {flight.origin_country}</p>
               </div>
             ))}
           </div>

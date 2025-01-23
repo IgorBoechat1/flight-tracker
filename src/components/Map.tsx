@@ -52,7 +52,7 @@ const Map: React.FC<MapProps> = ({ flights, selectedPlane, setSelectedPlane, set
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-8xl h-[900px] mt-96 bg-white shadow-lg rounded-md overflow-hidden">
+      <div className="w-full max-w-8xl h-[500px] mt-24 bg-white shadow-lg rounded-md overflow-hidden">
         <MapContainer
           center={[39.5, -8.0]}
           zoom={6}
