@@ -28,7 +28,7 @@ const PlaneCard: React.FC<PlaneCardProps> = ({ flight, isSelected, onSelect, onE
       <img
         src={flight.imageUrl}
         alt={flight.planeName}
-        className="w-full h-30 object-cover rounded-md mb-0"
+        className="w-full h-15 object-cover rounded-md mb-0 hover:scale-200 transition-transform duration-300 ease-in-out"
       />
       <h3 className="font-8 font-semibold">{flight.planeName}</h3>
       <p className="text-4">Callsign: {flight.callsign}</p>

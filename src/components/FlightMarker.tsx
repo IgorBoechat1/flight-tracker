@@ -28,7 +28,7 @@ const FlightMarker: React.FC<FlightMarkerProps> = ({ flight, setSelectedPlane })
     }}
   >
     <Popup>
-      <div className="p-4 w-[300px] bg-grey-500 rounded-lg shadow-md text-center">
+      <div className="relative p-4 w-[250px] h-full bg-grey-500 rounded-lg shadow-md text-center">
         <img
           src={flight.imageUrl}
           alt={flight.callsign}

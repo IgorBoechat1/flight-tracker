@@ -66,7 +66,7 @@ const MyApp: React.FC = () => {
     planeRefs={planeRefs}
     
   />
-        <section className="relative flex-col lg:flex-row w-full lg:flex-grow h-[30vh] mt-[-50vh] lg:mt-[50vh]">
+        <section className="relative flex-col lg:flex-row w-full lg:flex-grow h-[30vh] mt-[-30vh] lg:mt-[30vh]">
           <Map
             flights={flights}
             selectedPlane={selectedPlane}
