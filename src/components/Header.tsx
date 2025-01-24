@@ -1,10 +1,15 @@
-    const Header: React.FC = () => {
-        return (
-        <header className="bg-blue-600 text-white p-4">
-            <h1 className="text-xl">Flight Tracker</h1>
+import React, { useState } from 'react';
+import ToggleButton from "@/components/ToggleButton";
+
+const Header: React.FC = () => {
+    const [useFakeData, setUseFakeData] = useState(false);
+
+    return (
+        <header className="bg-sky-800 items-center flex justify-between min-w-full min-h-24 text-white p-4">
+            <h1 className="text-3xl text-bold uppercase font-semibold ml-12 font-primary ">FlightTracker</h1>
+            <ToggleButton useFakeData={useFakeData} setUseFakeData={setUseFakeData} />
         </header>
-        );
-    };
-    
-    export default Header;
-    
+    );
+};
+
+export default Header;

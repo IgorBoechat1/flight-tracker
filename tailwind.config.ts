@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,6 +13,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+        fontFamily: {
+          primary: ['ArgentumSans', 'sans-serif' ],
+        },
     },
   },
   plugins: [],
