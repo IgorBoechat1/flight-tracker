@@ -34,7 +34,7 @@ const Map: React.FC<MapProps> = ({
   }, [selectedPlane]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen mt-[-25vh] mb-0 bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen mb-0 mt-24 bg-gray-100 p-4">
       <div className="w-full max-w-8xl h-screen  bg-white shadow-lg rounded-md overflow-hidden no-repeat">
         <MapContainer
           center={[39.5, -8.0]}

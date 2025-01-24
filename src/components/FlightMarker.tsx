@@ -8,6 +8,8 @@ interface FlightMarkerProps {
   setSelectedPlane: React.Dispatch<React.SetStateAction<Flight | null>>;
 }
 
+
+
 const createAirplaneIcon = () => {
   const randomRotation = Math.floor(Math.random() * 60);
   return new L.DivIcon({

@@ -68,7 +68,7 @@ const getRandomCoordinatesInEurope = () => {
   }
   
   // Example usage of the generateRandomFlightData function:
-  const flights = generateRandomFlightData(10); // Generate 10 fake flights
+  const flights = generateRandomFlightData(30); // Generate 10 fake flights
   
   export default generateRandomFlightData;
   
