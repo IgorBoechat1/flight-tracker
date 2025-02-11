@@ -1,40 +1,50 @@
 import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import IconButton from '@mui/material/IconButton';
 import { Flight } from '@/app/page';
 
 interface PlaneCardProps {
   flight: Flight;
   isSelected: boolean;
   onSelect: (flight: Flight) => void;
-  onExit: (flight: Flight) => void; // New prop for handling the exit button
+  onExit: (flight: Flight) => void;
 }
 
 const PlaneCard: React.FC<PlaneCardProps> = ({ flight, isSelected, onSelect, onExit }) => (
-  <section>
-    <div
-      className={`bg-gray-700 p-2 rounded-lg shadow-md cursor-pointer w-full ${
-        isSelected ? 'border border-teal-500' : ''
-      }`}
-      onClick={() => onSelect(flight)}
-    >
-      <button
-        className="absolute top-2 right-2 bg-gray-500 font-primary text-white px-2 py-1 rounded-md hover:bg-red-600 focus:outline-none"
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent the card's onClick from being triggered
-          onExit(flight);
-        }}
-      >
-        X
-      </button>
-      <img
-        src={flight.imageUrl}
+  <Card sx={{ maxWidth: 345, border: isSelected ? '2px solid var(--primary)' : 'none' }}>
+    <CardActionArea onClick={() => onSelect(flight)}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={flight.imageUrl}
         alt={flight.planeName}
-        className="w-full h-15 object-cover rounded-md mb-0 hover:scale-200 transition-transform duration-300 ease-in-out"
       />
-      <h3 className="font-8 font-semibold">{flight.planeName}</h3>
-      <p className="text-4">Callsign: {flight.callsign}</p>
-      <p className="text-4">Origin Country: {flight.origin_country}</p>
-    </div>
-  </section>
+      <CardContent className="font-primary">
+        <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'bold', color: 'black' }}>
+          {flight.planeName}
+        </Typography>
+        <Typography variant="body2" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'black' }}>
+          Callsign: {flight.callsign}
+        </Typography>
+        <Typography variant="body2" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'black' }}>
+          Origin Country: {flight.origin_country}
+        </Typography>
+      </CardContent>
+    </CardActionArea>
+    <IconButton
+      sx={{ position: 'absolute', top: 8, right: 8 }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onExit(flight);
+      }}
+    >
+      
+    </IconButton>
+  </Card>
 );
 
 export default PlaneCard;

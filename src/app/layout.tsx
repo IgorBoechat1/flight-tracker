@@ -1,4 +1,3 @@
-// RootLayout.tsx
 'use client';
 
 import './globals.css'; // Ensure this imports your custom font and global styles
@@ -10,11 +9,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <html lang="en">
       <head>
         <link
-          href="/fonts/ArgentumSans-Bold.ttf" // Example if hosted externally
+          href="/fonts/aeroportal-2.ttf" // Example if hosted externally
           rel="stylesheet"
         />
       </head>
-      <body className="font-argentum-sans bg-gray-50 min-h-screen">{children}</body>
+      <body className="font-aeroportal bg-background min-h-screen">{children}</body>
     </html>
   );
 };

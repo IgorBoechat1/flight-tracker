@@ -1,6 +1,11 @@
 import React, { RefObject } from 'react';
 import { Flight } from '@/app/page';
 import PlaneCard from './PlaneCard';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 interface PlaneListProps {
   flights: Flight[];
@@ -16,11 +21,11 @@ const PlaneList: React.FC<PlaneListProps> = ({
   planeRefs,
 }) => {
   return (
-    <div className="lg:block">
+    <Box className="lg:block">
       {/* Desktop view */}
-      <div className="hidden relative lg:flex flex-col space-y-4 h-[calc(100vh-6rem)] overflow-y-auto <-50">
+      <Box className="hidden relative lg:flex flex-col space-y-4 h-screen font-primary overflow-y-auto">
         {flights.map((flight) => (
-          <div
+          <Box
             key={flight.icao24}
             ref={(planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>())}
           >
@@ -30,36 +35,38 @@ const PlaneList: React.FC<PlaneListProps> = ({
               onSelect={setSelectedPlane}
               onExit={() => setSelectedPlane(null)}
             />
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
 
       {/* Mobile view */}
-        <h2 className="text-xl font-bold text-center mb-4">Planes Info</h2>
-      <div className="lg:hidden flex absolute top-24 mb-0 left-0 h-56 right-0 bg-gray-800 text-white z-50 p-4 overflow-x-auto">
-        <div className="flex lg:gispace-x-3">
+      <Box className="lg:hidden flex absolute top-24 mb-0 left-0 h-screen right-0 bg-gray-800 text-white z-50 p-4 overflow-x-hidden">
+        <Box className="flex lg:space-x-3 w-full">
           {flights.map((flight) => (
-            <div
+            <Card
               key={flight.icao24}
               ref={(planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>())}
-              
-              className={`bg-gray-700 p-2 mt-7 h-28 itens-center rounded-lg shadow-md cursor-pointer w-48 ${
+              className={`bg-gray-700 p-2 mt-7 h-28 items-center rounded-lg shadow-md font-primary cursor-pointer w-full ${
                 selectedPlane?.icao24 === flight.icao24 ? 'border border-teal-500' : ''
               }`}
               onClick={() => setSelectedPlane(flight)}
             >
-              <img
-                src={flight.imageUrl}
+              <CardMedia
+                component="img"
+                height="140"
+                image={flight.imageUrl}
                 alt={flight.planeName}
                 className="w-full h-full object-cover rounded-md"
               />
-              <h3 className="text-xs mt-2">{flight.planeName}</h3>
-              <p className="text-xs">Callsign: {flight.callsign}</p>
-            </div>
+              <CardContent>
+                <Typography variant="body2" className="text-xs mt-2 font-primary" sx={{ fontWeight: 'bold', color: 'black' }}>{flight.planeName}</Typography>
+                <Typography variant="body2" className="text-xs font-primary" sx={{ fontWeight: 'semi-bold', color: 'black' }}>Callsign: {flight.callsign}</Typography>
+              </CardContent>
+            </Card>
           ))}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

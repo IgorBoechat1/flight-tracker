@@ -4,7 +4,8 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Flight } from '@/app/page';
 import FlightMarker from './FlightMarker';
-
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 export interface MapProps {
   flights: Flight[];
@@ -34,8 +35,8 @@ const Map: React.FC<MapProps> = ({
   }, [selectedPlane]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen mb-0 mt-24 bg-gray-100 p-4">
-      <div className="w-full max-w-8xl h-screen  bg-white shadow-lg rounded-md overflow-hidden no-repeat">
+    <Box className="flex flex-col items-center justify-center min-h-screen mb-0 bg-background p-4">
+      <Paper elevation={3} className="w-full max-w-8xl h-screen bg-primary shadow-lg rounded-md overflow-hidden">
         <MapContainer
           center={[39.5, -8.0]}
           zoom={6}
@@ -54,10 +55,8 @@ const Map: React.FC<MapProps> = ({
             />
           ))}
         </MapContainer>
-      </div>
-
-      
-    </div>
+      </Paper>
+    </Box>
   );
 };
 

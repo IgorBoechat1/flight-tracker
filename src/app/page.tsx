@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import generateRandomFlightData from '@/components/FakeFlightData';
 import Header from '@/components/Header';
-import ToggleButton from '@/components/ToggleButton';
 import PlaneList from '@/components/PlaneList';
 
 // Dynamically load Map component
@@ -31,7 +30,7 @@ const MyApp: React.FC = () => {
   // Initialize fake flight data and set client-side rendering flag
   useEffect(() => {
     setIsClient(true);
-    setFlights(generateRandomFlightData(20));
+    setFlights(generateRandomFlightData(80));
   }, []);
 
   // Scroll to the selected plane when it changes
@@ -47,13 +46,12 @@ const MyApp: React.FC = () => {
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen font-primary bg-background text-foreground">
       <Header />
-      <h2 className="text-xl text-center font-bold mb-4">PLANES INFO</h2>
-      <ToggleButton useFakeData={useFakeData} setUseFakeData={setUseFakeData} />
+        <h2 className="text-xl text-start ml-4 mt-4 p-2 uppercase font-primary">PLANES INFO</h2>
       <main className="flex-grow flex flex-col lg:flex-row">
         {/* Sidebar for PlaneList (visible on large screens) */}
-        <aside className="hidden lg:block lg:w-1/3 bg-gray-800 text-white p-4 overflow-y-auto">
+        <aside className="lg:w-1/3 bg-primary font-primary text-accent p-4 overflow-y-auto">
           <PlaneList
             flights={flights}
             selectedPlane={selectedPlane}
@@ -65,7 +63,7 @@ const MyApp: React.FC = () => {
         {/* Responsive Map and PlaneList */}
         <section className="flex flex-col w-full lg:w-2/3">
           {/* PlaneList (horizontal scroll for small screens) */}
-          <div className="lg:hidden overflow-x-auto whitespace-nowrap p-4 bg-gray-800 text-white">
+          <div className="lg:hidden overflow-x-auto p-4 bg-primary font-secondary text-accent">
             <PlaneList
               flights={flights}
               selectedPlane={selectedPlane}
@@ -75,7 +73,7 @@ const MyApp: React.FC = () => {
           </div>
 
           {/* Map */}
-          <div className="relative flex-grow h-[50vh] lg:h-full">
+          <div className="relative font-secondary flex-grow mt-0 h-[50vh] lg:h-full">
             <Map
               flights={flights}
               selectedPlane={selectedPlane}
