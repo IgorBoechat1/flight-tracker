@@ -46,12 +46,12 @@ const MyApp: React.FC = () => {
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col h-screen font-primary bg-background text-foreground">
+    <div className="flex flex-col h-screen font-primary bg-background text-foreground w-full">
       <Header />
-        <h2 className="text-xl text-start ml-4 mt-4 p-2 uppercase font-primary">PLANES INFO</h2>
-      <main className="flex-grow flex flex-col lg:flex-row">
+      <h2 className="text-xl text-start ml-4 mt-4 p-2 uppercase font-primary">PLANES INFO</h2>
+      <main className="flex-grow flex flex-col lg:flex-row w-full">
         {/* Sidebar for PlaneList (visible on large screens) */}
-        <aside className="lg:w-1/3 bg-primary font-primary text-accent p-4 overflow-y-auto">
+        <aside className="hidden lg:flex lg:w-1/2 bg-primary font-primary text-accent p-4 overflow-y-auto w-full">
           <PlaneList
             flights={flights}
             selectedPlane={selectedPlane}
@@ -61,9 +61,9 @@ const MyApp: React.FC = () => {
         </aside>
 
         {/* Responsive Map and PlaneList */}
-        <section className="flex flex-col w-full lg:w-2/3">
+        <section className="flex flex-col w-full lg:w-1/2">
           {/* PlaneList (horizontal scroll for small screens) */}
-          <div className="lg:hidden overflow-x-auto p-4 bg-primary font-secondary text-accent">
+          <div className="lg:hidden overflow-x-auto p-4 bg-primary font-secondary text-accent w-full">
             <PlaneList
               flights={flights}
               selectedPlane={selectedPlane}
@@ -73,7 +73,7 @@ const MyApp: React.FC = () => {
           </div>
 
           {/* Map */}
-          <div className="relative font-secondary flex-grow mt-0 h-[50vh] lg:h-full">
+          <div className="relative font-secondary flex-grow mt-0 h-[50vh] lg:h-full w-full">
             <Map
               flights={flights}
               selectedPlane={selectedPlane}

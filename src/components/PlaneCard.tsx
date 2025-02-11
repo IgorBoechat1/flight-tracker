@@ -15,11 +15,12 @@ interface PlaneCardProps {
 }
 
 const PlaneCard: React.FC<PlaneCardProps> = ({ flight, isSelected, onSelect, onExit }) => (
-  <Card sx={{ maxWidth: 345, border: isSelected ? '2px solid var(--primary)' : 'none' }}>
+  <Card className='w-48' sx={{ maxWidth: 345, border: isSelected ? '2px solid var(--primary)' : 'none' }}>
     <CardActionArea onClick={() => onSelect(flight)}>
       <CardMedia
         component="img"
         height="140"
+        width="345"
         image={flight.imageUrl}
         alt={flight.planeName}
       />

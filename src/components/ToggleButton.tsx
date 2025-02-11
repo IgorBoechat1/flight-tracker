@@ -12,13 +12,13 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ useFakeData, setUseFakeData
     onClick={() => setUseFakeData((prev) => !prev)}
     sx={{
       mb: 2,
-      mr: 8,
-      width: '12rem',
+      mr: 2,
+      width: '6rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      py: 2,
-      mt: 2,
+      py: 1,
+      mt: 1,
       fontFamily: 'aeroportal, sans-serif',
       borderRadius: '8px',
       border: '2px solid white',

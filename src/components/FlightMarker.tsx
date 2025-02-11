@@ -46,19 +46,19 @@ const FlightMarker: React.FC<FlightMarkerProps> = ({ flight, setSelectedPlane })
           <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'bold', color: 'white' }}>
             CALLSIGN:
           </Typography>
-          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', mb: 2, color: 'white' }}>
+          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', mb: 2, color: 'white' }}>
             {flight.callsign}
           </Typography>
           <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'bold', color: 'white' }}>
             ORIGIN COUNTRY:
           </Typography>
-          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', mb: 2, color: 'white' }}>
+          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', mb: 2, color: 'white' }}>
             {flight.origin_country}
           </Typography>
           <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'bold', color: 'white' }}>
             ICAO24:
           </Typography>
-          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
+          <Typography variant="body2" component="p" className="font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', color: 'white' }}>
             {flight.icao24}
           </Typography>
         </Box>
