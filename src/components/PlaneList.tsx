@@ -87,10 +87,10 @@ const PlaneList: React.FC<PlaneListProps> = ({
       </Box>
 
       {/* Mobile view */}
-      <Box component="div" className="lg:hidden flex h-72 overflow-x-auto p-0 justify-center w-full">
+      <Box component="div" className="lg:hidden flex h-32 overflow-x-auto p-0 justify-center w-full">
         <Stack direction="row" spacing={2} className="flex-row mr-0 w-full">
           {flights.map((flight) => (
-            <Item key={flight.icao24} className="flex-shrink-0 w-52 h-48">
+            <Item key={flight.icao24} className="flex-shrink-0 w-52 h-32">
               <Card
                 ref={(planeRefs.current[flight.icao24] = React.createRef<HTMLDivElement>())}
                 className={`p-0 w-full h-full rounded-lg shadow-md cursor-pointer transition border border-transparent hover:border-teal-500 ${
@@ -104,7 +104,7 @@ const PlaneList: React.FC<PlaneListProps> = ({
                   height="100%"
                   image={flight.imageUrl}
                   alt={flight.planeName}
-                  className="w-full h-full object-cover rounded-md"
+                  className="w-full h-full object-contain rounded-md"
                 />
                 <CardContent
                   sx={{
@@ -128,10 +128,10 @@ const PlaneList: React.FC<PlaneListProps> = ({
                   <Typography variant="body2" className="text-xs" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
                     Callsign: {flight.callsign}
                   </Typography>
-                  <Typography variant="body2" className="text-xs" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
+                  <Typography variant="body2" className="text-xs font-primary" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
                     Origin Country: {flight.origin_country}
                   </Typography>
-                  <Typography variant="body2" className="text-xs" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
+                  <Typography variant="body2" className="text-xs font-aeroportal" sx={{ fontFamily: 'aeroportal, sans-serif', fontWeight: 'semi-bold', color: 'white' }}>
                     ICAO24: {flight.icao24}
                   </Typography>
                 </CardContent>

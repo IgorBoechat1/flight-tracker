@@ -73,7 +73,7 @@ const MyApp: React.FC = () => {
           </div>
 
           {/* Map */}
-          <div className="relative font-secondary flex-grow mt-0 h-[50vh] lg:h-full w-full">
+          <div className="relative font-secondary flex-grow mt-0 h-[20vh] lg:h-52vh w-full">
             <Map
               flights={flights}
               selectedPlane={selectedPlane}
