@@ -54,7 +54,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ useFakeData, setUseFakeData
       >
         {useFakeData ? 'Use Fake Data' : 'Switch to API Data'}
       </Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}        sx={{ zIndex: 1500 }} // Set a high zIndex value
+      >
         <Alert className="z-150" onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
           API data is now disabled due to financial constraints. Enjoy the fake data instead!
         </Alert>
